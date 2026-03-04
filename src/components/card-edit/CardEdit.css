@@ -1,0 +1,24 @@
+.card-modifier-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & form {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    & button {
+        height: 50px;
+        width: 100px;
+    }
+
+    & input {
+        width: 200px;
+        height: 20px;
+        border-radius: 5px;
+        border-color: black;
+        border-style: solid;
+    }
+}
