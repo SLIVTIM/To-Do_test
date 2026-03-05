@@ -8,7 +8,6 @@ function TaskBoard({ onStatsChange }) {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(true)
 
-  // ── FETCH ──────────────────────────────────────────────────────
   useEffect(() => {
     fetch(API)
       .then(r => r.json())
@@ -22,14 +21,12 @@ function TaskBoard({ onStatsChange }) {
       })
   }, [])
 
-  // report stats up to parent (for Header)
   useEffect(() => {
     if (onStatsChange) {
       onStatsChange({ total: tasks.length, done: tasks.filter(t => t.done).length })
     }
   }, [tasks])
 
-  // ── ADD ────────────────────────────────────────────────────────
   async function addTask() {
     const text = input.trim()
     if (!text) return
@@ -47,7 +44,6 @@ function TaskBoard({ onStatsChange }) {
     }
   }
 
-  // ── DELETE ─────────────────────────────────────────────────────
   async function deleteTask(id) {
     try {
       await fetch(`${API}/${id}`, { method: 'DELETE' })
@@ -57,7 +53,6 @@ function TaskBoard({ onStatsChange }) {
     }
   }
 
-  // ── TOGGLE DONE ────────────────────────────────────────────────
   async function toggleDone(id) {
     const task = tasks.find(t => t.id === id)
     if (!task) return
@@ -70,7 +65,6 @@ function TaskBoard({ onStatsChange }) {
     }
   }
 
-  // ── FORMAT DATE ────────────────────────────────────────────────
   function formatDate(raw) {
     if (!raw) return 'no date'
     const d = new Date(raw)
@@ -81,12 +75,11 @@ function TaskBoard({ onStatsChange }) {
   return (
     <div className="taskboard-wrapper">
 
-      {/* ADD FORM */}
       <div className="add-form">
         <input
           type="text"
-          maxLength={15}
-          placeholder="new task (max 15 chars)"
+          maxLength={20}
+          placeholder="new task (max 20 chars)"
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && addTask()}
@@ -94,7 +87,6 @@ function TaskBoard({ onStatsChange }) {
         <button onClick={addTask}>Add Card</button>
       </div>
 
-      {/* TASK LIST */}
       <div className="task-list">
         {loading && <div className="loader" />}
 
