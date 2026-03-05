@@ -1,15 +1,12 @@
 import './Header.css'
-import toDoListSvg from './../../assets/header/to-do-list.svg'
 
-function Header() {
-    return (
-        <>
-            <div className='title-container'>
-                <h1>To Do List</h1>
-                <img src={toDoListSvg} alt="To Do List Image" />
-            </div>
-        </>
-    )
+function Header({ total, done }) {
+  return (
+    <header className="header-wrapper">
+      <h1>my <span>tasks.</span></h1>
+      <p>{total} tasks · {done} done</p>
+    </header>
+  )
 }
 
-export default Header 
+export default Header

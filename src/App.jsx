@@ -1,21 +1,16 @@
-import './App.css'
 import { useState } from 'react'
-import Header from './components/header/Header'
-import TaskCard from './components/task-card/TaskCard'
-import CardEdit from './components/card-edit/CardEdit'
+import Header from './components/Header/Header'
+import TaskBoard from './components/TaskBoard/TaskBoard'
+import './App.css'
 
 function App() {
-
+  const [stats, setStats] = useState({ total: 0, done: 0 })
 
   return (
-    <>
-      <Header />
-      <div className='card-management'>
-          <TaskCard />
-          <CardEdit />
-      </div>
-
-    </>
+    <main>
+      <Header total={stats.total} done={stats.done} />
+      <TaskBoard onStatsChange={setStats} />
+    </main>
   )
 }
 
